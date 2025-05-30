@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prova Javascript</title>
     <link rel="stylesheet" href="style.css">
-    <style src="index.js"></style>
+    <script src="index.js"></script>
 </head>
+
 <body>
-    
+    <!-- Container do formulário de busca de livros -->
+    <div class="div_container">
+        <!-- Título da busca de livros -->
+        <h2>Busca de Livros</h2>
+        <!-- Div que envolve o formulário da busca -->
+        <div class="div_form">
+            <!-- Campo do para informar o código ISBN do livro -->
+            <label for="book_code">Código ISBN:</label>
+            <input type="text" id="book_code" placeholder="Código do livro" required>
+        </div>
+        <div>
+            <p id="book_title"></p>
+        </div>
+        <!-- Botão para salvar o livro -->
+        <button id="save_button" class="button">Salvar</button>
+    </div>
+    <!-- Div que envolve a tabela da lista de livros salvos -->
+    <div class="div_table">
+        <!-- Título da lista de livros salvos -->
+        <h2>Lista de Livros</h2>
+        <!-- Tabela que vai exibir os livros já salvos -->
+        <table id="book_table">
+            <tr>
+                <th>Título</th>
+                <th>Subtítulo</th>
+                <th>Lista de autores</th>
+                <th>Editora</th>
+                <th>Sinopse</th>
+                <th>Ano de publicação</th>
+                <th>Quantidade de páginas</th>
+                <th>Categorias</th>
+                <th>Imagem de capa</th>
+            </tr>
+        </table>
+    </div>
 </body>
+
 </html>
