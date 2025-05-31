@@ -1,7 +1,10 @@
 let mainBookList = [];
 
+//Função para salvar os dados na tabela
 function addBookToTable(book) {
+    //Cria a linha
     const newLine = document.createElement('tr');
+    //Cria as células (colunas)
     const tableBookCode = document.createElement('td');
     const tableBookTitle = document.createElement('td');
     const tableBookSubtitle = document.createElement('td');
@@ -13,6 +16,7 @@ function addBookToTable(book) {
     const tableBookSubjects = document.createElement('td');
     const tableBookCover = document.createElement('td');
 
+    //Faz com que as células puxem as informações do objeto
     tableBookCode.innerHTML = book.code;
     tableBookTitle.innerHTML = book.title;
     tableBookSubtitle.innerHTML = book.subtitle;
@@ -24,6 +28,7 @@ function addBookToTable(book) {
     tableBookSubjects.innerHTML = book.subjects;
     tableBookCover.innerHTML = book.cover;
 
+    //Faz com que a linha criada puxe as células com as informações
     newLine.appendChild(tableBookCode);
     newLine.appendChild(tableBookTitle);
     newLine.appendChild(tableBookSubtitle);
@@ -35,11 +40,12 @@ function addBookToTable(book) {
     newLine.appendChild(tableBookSubjects);
     newLine.appendChild(tableBookCover);
 
+    //Faz com que a linha que contém as células com informações seja adicionada na tabela
     const bookListTable = document.getElementById("book_table");
-
     bookListTable.appendChild(newLine);
 }
 
+//Função para salvar o livro
 function saveBook() {
     const inputBookCode = document.getElementById("book_code");
     const inputBookTitle = document.getElementById("book_title").innerHTML;
@@ -52,6 +58,7 @@ function saveBook() {
     const inputBookSubjects = document.getElementById("book_subjects").innerHTML;
     const inputBookCover = document.getElementById("book_cover").innerHTML;
 
+    //Cria um novo objeto com os dados obtidos pelo input e API
     const newBook = {
         code: inputBookCode.value,
         title: inputBookTitle,
@@ -65,9 +72,10 @@ function saveBook() {
         cover: inputBookCover,
     };
 
-    console.log(newBook);
+    //Puxa a função para salvar os dados na tabela
     addBookToTable(newBook);
 
+    //Adiciona o objeto ao final do array
     mainBookList.push(newBook);
 }
 
@@ -76,7 +84,7 @@ function searchBook() {
     const inputBookCode = document.getElementById("book_code");
     const bookCodeValue = inputBookCode.value;
 
-    fetch("https://brasilapi.com.br/api/isbn/v1/" + bookCodeValue)
+    fetch("https://brasilapi.com.br/api/isbn/v1/" + bookCodeValue + "?providers=google-books")
         .then((resposta) => {
             return resposta.json();
         })
@@ -98,7 +106,7 @@ function searchBook() {
             const inputBookSubjects = document.getElementById("book_subjects");
             inputBookSubjects.innerText = json.subjects;
             const inputBookCover = document.getElementById("book_cover");
-            inputBookCover.innerText = json.cover_url;
+            inputBookCover.innerHTML = json.cover_url;
         });
 
 }
